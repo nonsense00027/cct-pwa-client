@@ -38,17 +38,17 @@ function Header() {
 
         {/* Menu Icon */}
         <div className="lg:flex hidden text-[14.304px] font-[roboto] text-[#a3a4a6] cursor-pointer space-x-[0.5rem]">
-          <div className="flex space-x-[0.5rem]">
-            <div className="font-black">
+          <div className="flex space-x-[0.5rem] items-center">
+            <div className="font-black text-[130%]">
               <FontAwesomeIcon icon={faUserLock} />
             </div>
-            <div>Login</div>
+            <div className="text-[0.894rem]">Login</div>
           </div>
-          <div className="flex space-x-[0.5rem]">
-            <div>
-              <FontAwesomeIcon className="font-black" icon={faUserEdit} />
+          <div className="flex space-x-[0.5rem] items-center">
+            <div className="font-black text-[130%]">
+              <FontAwesomeIcon icon={faUserEdit} />
             </div>
-            <div>Register</div>
+            <div className="text-[0.894rem]">Register</div>
           </div>
         </div>
       </div>

@@ -8,14 +8,14 @@ function Login() {
       <Header />
       {/* Login Card */}
       <div className="flex flex-col justify-center text-center  py-[48px] font-[400] text-[0.894rem]   w-[100%]  grow-1 shrink-1 basis-[auto]  items-center px-4">
-        <div className="max-w-[380px] w-[100%] shadow-[0_10px_30px_0_rgba(24,28,33,0.4)] shadow-gray-400 ">
+        <div className="max-w-[380px] w-[100%] shadow-[0_10px_30px_0_rgba(24,28,33,0.4)] shadow-gray-200 ">
           {/* Header Card */}
           <div className="p-[24px] border-b-[1px] border-[#cfd3db] text-[#a3a4a6]">
             <div className="text-[1rem] font-[500]">Login to Your Account</div>
           </div>
           {/* Content Card */}
 
-          <div className="flex flex-col  text-left md:px-4 px-5 pt-4 pb-5 text-[0.83125rem] font-[500] text-[inherit] mt-3">
+          <div className="flex flex-col  text-left px-[1.5rem] md:px-[3rem] pt-4 pb-5 text-[0.83125rem] font-[500] text-[inherit] mt-3">
             <div className="mb-[1rem]">
               <div className="mb-[0.438rem]">Email</div>
               <div>
@@ -46,7 +46,7 @@ function Login() {
           </div>
 
           {/* Footer Card */}
-          <div className="p-[24px] border-t-[1px] border-[#cfd3db] text-[#a3a4a6]">
+          <div className="p-[24px] border-t-[1px] border-[#cfd3db] text-[#a3a4a6] flex justify-center space-x-2">
             <div className="text-[0.894rem] font-[400]">
               Don't have an account yet?
             </div>

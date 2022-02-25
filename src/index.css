@@ -557,9 +557,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+.px-\[1\.5rem\] {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .py-\[0\.438rem\] {
   padding-top: 0.438rem;
@@ -575,6 +575,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-\[1\.5rem\] {
   padding-top: 1.5rem;
+}
+.pl-1 {
+  padding-left: 0.25rem;
 }
 .pt-4 {
   padding-top: 1rem;
@@ -612,23 +615,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 .font-\[400\] {
   font-weight: 400;
 }
-.font-black {
-  font-weight: 900;
-}
 .font-\[500\] {
   font-weight: 500;
+}
+.font-black {
+  font-weight: 900;
 }
 .text-\[\#9d9fa1\] {
   --tw-text-opacity: 1;
   color: rgb(157 159 161 / var(--tw-text-opacity));
 }
-.text-\[\#a3a4a6\] {
-  --tw-text-opacity: 1;
-  color: rgb(163 164 166 / var(--tw-text-opacity));
-}
 .text-\[\#1e70cd\] {
   --tw-text-opacity: 1;
   color: rgb(30 112 205 / var(--tw-text-opacity));
+}
+.text-\[\#a3a4a6\] {
+  --tw-text-opacity: 1;
+  color: rgb(163 164 166 / var(--tw-text-opacity));
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -639,8 +642,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 10px 30px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.shadow-gray-400 {
-  --tw-shadow-color: #9ca3af;
+.shadow-gray-200 {
+  --tw-shadow-color: #e5e7eb;
   --tw-shadow: var(--tw-shadow-colored);
 }
 .outline-none {
@@ -657,9 +660,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: none;
   }
 
-  .md\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .md\:px-\[3rem\] {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 @media (min-width: 1024px) {

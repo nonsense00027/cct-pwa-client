@@ -26,7 +26,9 @@ function Footer() {
       </div>
       <div className="p-[24px]">
         © Conduct Clinical Trials 2022. All Rights Reserved.
-        <a href="">Privacy Policy</a>
+        <a href="" className="text-[0.894rem] font-[500] text-[#1e70cd] pl-1">
+          Privacy Policy
+        </a>
       </div>
     </div>
   );

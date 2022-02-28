@@ -1,11 +1,10 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
 function Login() {
   return (
-    <div className="min-h-[100vh] w-[100%] flex flex-col grow-1 shrink-1 basis-100 justify-between">
-      <Header />
+    <div>
+      {/* <Header /> */}
       {/* Login Card */}
       <div className="flex flex-col justify-center text-center  py-[48px] font-[400] text-[0.894rem]   w-[100%]  grow-1 shrink-1 basis-[auto]  items-center px-4">
         <div className="max-w-[380px] w-[100%] shadow-[0_10px_30px_0_rgba(24,28,33,0.4)] shadow-gray-200 ">
@@ -56,7 +55,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

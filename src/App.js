@@ -15,7 +15,7 @@ function App() {
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (
-    <div className="min-h-[100vh] w-[100%] flex flex-col grow-1 shrink-1 basis-100 justify-between bg-[#F9F8F9]">
+    <div className="min-h-[100vh] w-[100%] flex flex-col grow shrink-1 basis-100 justify-between bg-[#F9F8F9]">
       <UserContext.Provider
         value={{
           user,

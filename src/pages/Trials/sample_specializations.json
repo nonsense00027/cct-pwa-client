@@ -1,0 +1,14 @@
+{
+  "sample_s": [
+    { "name": "All" },
+    { "name": "Addiction Medicine" },
+    { "name": "Allergy & Asthma" },
+    { "name": "Anesthsiology" },
+    { "name": "Cardiology" },
+    { "name": "Cardiology - Interventional" },
+    { "name": "Dentistry" },
+    { "name": "Dermatology" },
+    { "name": "Research Center" },
+    { "name": "Urology" }
+  ]
+}

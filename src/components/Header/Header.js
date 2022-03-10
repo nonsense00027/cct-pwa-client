@@ -3,10 +3,10 @@ import logo_small from "../../assets/images/logo_small.png";
 import logo from "../../assets/images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserLock, faUserEdit } from "@fortawesome/free-solid-svg-icons";
-import { UserContext } from "../../contexts/UserContext";
+import { useAuthContext } from "../../shared/contexts/AuthContext";
 
 function Header(props) {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useAuthContext();
   const [showMenu, setShowMenu] = useState(true);
   let winPath = window.location.pathname;
 

@@ -1,7 +1,13 @@
 import React from "react";
 import Header from "../../components/Header/Header";
+import { useAuthContext } from "../../shared/contexts/AuthContext";
 
 function Login() {
+  const { login } = useAuthContext();
+
+  const handleLogin = () => {
+    login("admin@system.com", "bobo2010");
+  };
   return (
     <div>
       {/* <Header /> */}
@@ -39,7 +45,10 @@ function Login() {
               </div>
             </div>
             {/* Button */}
-            <button className="mb-[1rem] mt-[1rem] bg-[#3c97fe] text-white text-[0.894rem] font-[500] rounded-[0.25rem] py-[0.438rem] px-[1.125rem]">
+            <button
+              className="mb-[1rem] mt-[1rem] bg-[#3c97fe] text-white text-[0.894rem] font-[500] rounded-[0.25rem] py-[0.438rem] px-[1.125rem]"
+              onClick={handleLogin}
+            >
               <div className=" cursor-pointer text-[85%]">Sign In</div>
             </button>
           </div>

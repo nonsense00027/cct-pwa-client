@@ -12,6 +12,17 @@ import dropdownarrow from "../../assets/images/drop-down-arrow.png";
 import cog from "../../assets/images/cog.png";
 import verticalEllipsis from "../../assets/images/vertical-ellipsis.png";
 import { Link } from "react-router-dom";
+import {
+  ClipboardListIcon,
+  BriefcaseIcon,
+  OfficeBuildingIcon,
+} from "@heroicons/react/solid";
+
+const links = [
+  { name: "Dashboard", path: "/dashboard", icon: ClipboardListIcon },
+  { name: "Clinics", path: "/clinics", icon: OfficeBuildingIcon },
+  { name: "Trials", path: "/trials", icon: BriefcaseIcon },
+];
 
 function Sidebar(props) {
   return (
@@ -53,8 +64,8 @@ function Sidebar(props) {
         </div>
 
         {/* Body */}
-        <div className="">
-          <a
+        <div className="px-4 flex flex-col gap-4">
+          {/* <a
             href="/"
             onClick={() => {
               props.setShowSidebar(!props.showSidebar);
@@ -82,6 +93,18 @@ function Sidebar(props) {
           >
             <SidebarItems logo={file} text={"Trials"} href="/trials" />
           </a>
+          <Link to="/trials">
+            <SidebarItems logo={file} text={"Trials"} href="/trials" />
+          </Link> */}
+
+          {links.map((link) => (
+            <div className="mt-[25px]" style={{ margin: 5 }}>
+              <Link to={link.path} className="flex items-center gap-2">
+                {<link.icon className="h-[25px] w-[25px]" />}
+                {link.name}
+              </Link>
+            </div>
+          ))}
         </div>
 
         {/* Footer */}

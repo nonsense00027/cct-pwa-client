@@ -1,0 +1,16 @@
+{
+  "sample_status": [
+    { "status": "Awarded Study" },
+    { "status": "CCT Declined" },
+    { "status": "CCT Forced Submission" },
+    { "status": "Delayed" },
+    { "status": "MD Declined" },
+    { "status": "New" },
+    { "status": "Awarded Study" },
+    { "status": "CCT Declined" },
+    { "status": "CCT Forced Submission" },
+    { "status": "Delayed" },
+    { "status": "MD Declined" },
+    { "status": "New" }
+  ]
+}

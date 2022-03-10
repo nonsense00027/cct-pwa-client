@@ -7,7 +7,7 @@ import Login from "./pages/Authentication/Login";
 
 function App() {
   const [user, setUser] = useState(null);
-
+  console.log("server url: ", process.env.REACT_APP_SERVER_URL);
   return (
     <div>
       {user ? (

@@ -31,8 +31,17 @@ function Items({ currentItems }) {
               <td className="px-4 py-3 text-ms font-semibold border">22</td>
               <td className="px-4 py-3 text-xs border">
                 <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
-                  {" "}
-                  Acceptable{" "}
+                  Acceptable
+                </span>
+              </td>
+              <td className="px-4 py-3 text-xs border">
+                <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
+                  Acceptable
+                </span>
+              </td>
+              <td className="px-4 py-3 text-xs border">
+                <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
+                  Acceptable
                 </span>
               </td>
             </tr>
@@ -42,17 +51,10 @@ function Items({ currentItems }) {
   );
 }
 
-function TrialsTable({ itemsPerPage }) {
-  console.log(sample.trial_data);
-
-  // We start with an empty list of items.
+function ApplicationsTable({ itemsPerPage }) {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
-
-  // const itemsPerPage = 5;
 
   useEffect(() => {
     // Fetch items from another resources.
@@ -78,9 +80,11 @@ function TrialsTable({ itemsPerPage }) {
           <thead>
             <tr className="text-md  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
               <th className="px-4 py-3">Date Added</th>
-              <th className="px-4 py-3">Title</th>
-              <th className="px-4 py-3">Specializations</th>
-              <th className="px-4 py-3">Applications</th>
+              <th className="px-4 py-3">Protocol No.</th>
+              <th className="px-4 py-3">Submitted by</th>
+              <th className="px-4 py-3">Investigator</th>
+              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3">Note</th>
               <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
@@ -109,4 +113,4 @@ function TrialsTable({ itemsPerPage }) {
   );
 }
 
-export default TrialsTable;
+export default ApplicationsTable;

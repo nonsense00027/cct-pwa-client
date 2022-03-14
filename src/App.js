@@ -8,26 +8,40 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/sidebar/Sidebar";
 import { useAuthContext } from "./shared/contexts/AuthContext";
+import Notifications from "./pages/Notifications";
+import Records from "./pages/Records";
+import Applications from "./pages/Applications";
+import { TrialsContextProvider } from "./contexts/TrialsContext";
+import CreateTrials from "./pages/CreateTrials";
+import Subscription from "./pages/Subscription";
 
 function App() {
   // const [user, setUser] = useState("mc");
-  // const [user, setUser] = useState(null);
+  // const [user, setUser] = useState("hello");
   const { user } = useAuthContext();
-  const [showSidebar, setShowSidebar] = useState(false);
-  console.log("user: ", user);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   return (
-    <div className="min-h-[100vh] w-[100%] flex flex-col grow shrink-1 basis-100 justify-between bg-[#F9F8F9]">
-      <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-      {showSidebar && (
-        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-      )}
+    <div>
       <BrowserRouter>
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
         {/* With User */}
         {user && (
           <Switch>
+            <Route exact path="/financial">
+              <Records />
+            </Route>
+            <Route exact path="/notifications">
+              <Notifications />
+            </Route>
+            <Route exact path="/subscription">
+              <Subscription />
+            </Route>
             <Route exact path="/messages">
               <Messages />
+            </Route>
+            <Route exact path="/applications">
+              <Applications />
             </Route>
             <Route exact path="/trials">
               <Trials />

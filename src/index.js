@@ -5,11 +5,14 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./shared/contexts/AuthContext";
+import { AppContextProvider } from "./contexts/AppContext";
 
 ReactDOM.render(
   <BrowserRouter>
     <AuthContextProvider>
-      <App />
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
     </AuthContextProvider>
   </BrowserRouter>,
   document.getElementById("root")

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import { useAuthContext } from "../../shared/contexts/AuthContext";
 
 function Login() {
   const { login } = useAuthContext();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    login("admin@system.com", "bobo2010");
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(email, password);
   };
+
   return (
     <div>
       {/* <Header /> */}
@@ -20,13 +24,19 @@ function Login() {
           </div>
           {/* Content Card */}
 
-          <div className="flex flex-col  text-left px-[1.5rem] md:px-[3rem] pt-4 pb-5 text-[0.83125rem] font-[500] text-[inherit] mt-3">
+          <form
+            onSubmit={handleLogin}
+            className="flex flex-col  text-left px-[1.5rem] md:px-[3rem] pt-4 pb-5 text-[0.83125rem] font-[500] text-[inherit] mt-3"
+          >
             <div className="mb-[1rem]">
               <div className="mb-[0.438rem]">Email</div>
               <div>
                 <input
                   className="outline-none border-[1px] border-[#999999] py-[0.438rem] px-[0.875rem] w-[100%] rounded-[0.25rem]"
-                  type="text"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -41,17 +51,20 @@ function Login() {
                 <input
                   className="outline-none border-[1px] border-[#999999] py-[0.438rem] px-[0.875rem] w-[100%] rounded-[0.25rem]"
                   type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
             {/* Button */}
             <button
               className="mb-[1rem] mt-[1rem] bg-[#3c97fe] text-white text-[0.894rem] font-[500] rounded-[0.25rem] py-[0.438rem] px-[1.125rem]"
-              onClick={handleLogin}
+              type="submit"
             >
               <div className=" cursor-pointer text-[85%]">Sign In</div>
             </button>
-          </div>
+          </form>
 
           {/* Footer Card */}
           <div className="p-[24px] border-t-[1px] border-[#cfd3db] text-[#a3a4a6] flex justify-center space-x-2">

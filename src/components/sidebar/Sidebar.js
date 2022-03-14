@@ -11,127 +11,101 @@ import account from "../../assets/images/account.png";
 import dropdownarrow from "../../assets/images/drop-down-arrow.png";
 import cog from "../../assets/images/cog.png";
 import verticalEllipsis from "../../assets/images/vertical-ellipsis.png";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
-  ClipboardListIcon,
+  TemplateIcon,
   BriefcaseIcon,
   OfficeBuildingIcon,
-} from "@heroicons/react/solid";
+  XIcon,
+  CogIcon,
+  DotsVerticalIcon,
+  ChatIcon,
+  PresentationChartLineIcon,
+  BadgeCheckIcon,
+  BellIcon,
+  ClipboardCheckIcon,
+} from "@heroicons/react/outline";
+import { UserCircleIcon } from "@heroicons/react/solid";
+import { useAppContext } from "../../contexts/AppContext";
 
 const links = [
-  { name: "Dashboard", path: "/dashboard", icon: ClipboardListIcon },
-  { name: "Clinics", path: "/clinics", icon: OfficeBuildingIcon },
+  { name: "Dashboard", path: "/", icon: TemplateIcon },
   { name: "Trials", path: "/trials", icon: BriefcaseIcon },
+  { name: "My Applications", path: "/applications", icon: ClipboardCheckIcon },
+  { name: "Messages", path: "/messages", icon: ChatIcon },
+  {
+    name: "Financial Records",
+    path: "/financial",
+    icon: PresentationChartLineIcon,
+  },
+  { name: "Subscription", path: "/subscription", icon: BadgeCheckIcon },
+  { name: "Notifications", path: "/notifications", icon: BellIcon },
 ];
 
 function Sidebar(props) {
+  const { showSidebar, closeSidebar } = useAppContext();
+
+  const checkActive = ({ isActive }) => {
+    return isActive
+      ? "flex items-center gap-3 hover:bg-gray-100 py-2 px-2 bg-red-400"
+      : "flex items-center gap-3 hover:bg-gray-100 py-2 px-2";
+  };
+
   return (
-    <div className="w-10/12 md:w-[336px] h-screen bg-white shadow-lg absolute md:flex md:flex-col z-50">
-      <div className="flex flex-col justify-between h-full">
-        {/* Header */}
-        <div className=" flex justify-center pt-[100px]">
-          {/* Logo */}
-          <div>
-            <img className="h-[41px]" src={logo} />
+    <div
+      className={`w-10/12 md:w-[336px] h-screen fixed bg-white flex flex-col px-2 z-50 transform transition-all duration-200 ease-out ${
+        showSidebar ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
+      {/* Header */}
+      <div>
+        <XIcon
+          className="h-5 w-5 float-right mt-4 mb-4 mr-2"
+          onClick={closeSidebar}
+        />
+      </div>
+      <div className=" flex justify-center">
+        {/* Logo */}
+        <div>
+          <img className="h-8" src={logo} />
+        </div>
+        {/* X button */}
+      </div>
+
+      {/* Body */}
+      <div className="px-4 flex-1 pt-10">
+        {links.map((link) => (
+          <NavLink
+            key={link.path}
+            to={link.path}
+            exact
+            className="flex items-center gap-3 hover:bg-gray-100 py-2 px-2"
+            activeStyle={{ backgroundColor: "#eeeeee" }}
+            onClick={closeSidebar}
+          >
+            {<link.icon className="h-4 w-4" />}
+            {link.name}
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <div className="items-end pb-[20px]">
+        <div className="flex items-center justify-between space-x-2 py-[10px] pl-[20px] text-[14px] bottom-[40px]">
+          {/* Left */}
+          <div className="flex items-center space-x-2 cursor-pointer transform hover:scale-105">
+            {/* Logo */}
+            <UserCircleIcon className="h-6 w-6" />
+            {/* Text */}
+            <div>System Admin</div>
           </div>
 
-          {/* X button */}
-          <div className="">
-            {/* Mobile View -> Menu Icon */}
-            <div
-              className={`transform hover:scale-105 cursor-pointer absolute right-[8px] h-[33px] w-[39.38px] py-[8px] px-[11.2px] border-[1px] border-[#cecfd3]  rounded-[0.25rem] top-[8px]`}
-              onClick={() => {
-                props.setShowSidebar(!props.showSidebar);
-              }}
-            >
-              <svg
-                height="15"
-                width="15"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-x"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </div>
-          </div>
-        </div>
+          {/* Right  */}
 
-        {/* Body */}
-        <div className="px-4 flex flex-col gap-4">
-          {/* <a
-            href="/"
-            onClick={() => {
-              props.setShowSidebar(!props.showSidebar);
-            }}
-          >
-            <SidebarItems logo={dashboard} text={"Dashboard"} href="/" />
-          </a>
-          <SidebarItems
-            logo={stethoscope}
-            text={"Specializations"}
-            href="/specializations"
-          />
-          <SidebarItems logo={hospital} text={"Clinics"} href="/clinics" />
-          <SidebarItems logo={user} text={"Users"} href="/users" />
-          <SidebarItems
-            logo={avatar}
-            text={"Sales Representatives"}
-            href="/sales"
-          />
-          <a
-            href="/trials"
-            onClick={() => {
-              props.setShowSidebar(!props.showSidebar);
-            }}
-          >
-            <SidebarItems logo={file} text={"Trials"} href="/trials" />
-          </a>
-          <Link to="/trials">
-            <SidebarItems logo={file} text={"Trials"} href="/trials" />
-          </Link> */}
-
-          {links.map((link) => (
-            <div className="mt-[25px]" style={{ margin: 5 }}>
-              <Link to={link.path} className="flex items-center gap-2">
-                {<link.icon className="h-[25px] w-[25px]" />}
-                {link.name}
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div className="items-end pb-[20px]">
-          <div className="flex items-center justify-between space-x-2 py-[10px] pl-[20px] text-[14px] bottom-[40px]">
-            {/* Left */}
-            <div className="flex space-x-2 cursor-pointer transform hover:scale-105">
-              {/* Logo */}
-              <div>
-                <img src={account} className="h-[25px] w-[25px]" />
-              </div>
-              {/* Text */}
-              <div>System Admin</div>
-            </div>
-            {/* Right  */}
-
-            <div className="flex pr-[20px] space-x-2 ">
-              {/* Setting Logo */}
-              <img
-                src={cog}
-                className="h-[15px] w-[15px] cursor-pointer transform hover:scale-125"
-              />
-              <img
-                src={verticalEllipsis}
-                className="h-[15px] w-[15px] cursor-pointer transform hover:scale-125"
-              />
-            </div>
+          <div className="flex pr-[20px] space-x-1 ">
+            {/* Setting Logo */}
+            <CogIcon className="h-5 w-5" />
+            <DotsVerticalIcon className="h-5 w-5" />
           </div>
         </div>
       </div>

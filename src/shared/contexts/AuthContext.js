@@ -7,12 +7,17 @@ const cookieToken = Cookies.get("token") || null;
 const cookieEmail = Cookies.get("email") || null;
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({ token: cookieToken, email: cookieEmail });
+  const [user, setUser] = useState(
+    cookieToken && cookieEmail
+      ? { token: cookieToken, email: cookieEmail }
+      : null
+  );
 
+  console.log("user: ", user);
   const login = (email, password) => {
     axios
       .post(
-        "http://localhost:8000/api/auth/login",
+        "https://cctclient.com/api/auth/login",
         {
           email,
           password,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo.png";
 import SidebarItems from "./SidebarItems";
 import dashboard from "../../assets/images/dashboard.png";
@@ -27,6 +27,7 @@ import {
 } from "@heroicons/react/outline";
 import { UserCircleIcon } from "@heroicons/react/solid";
 import { useAppContext } from "../../contexts/AppContext";
+import { useAuthContext } from "../../shared/contexts/AuthContext";
 
 const links = [
   { name: "Dashboard", path: "/", icon: TemplateIcon },
@@ -44,11 +45,19 @@ const links = [
 
 function Sidebar(props) {
   const { showSidebar, closeSidebar } = useAppContext();
+  const { logout } = useAuthContext();
+  const [showOption, setShowOption] = useState(false);
 
   const checkActive = ({ isActive }) => {
     return isActive
       ? "flex items-center gap-3 hover:bg-gray-100 py-2 px-2 bg-red-400"
       : "flex items-center gap-3 hover:bg-gray-100 py-2 px-2";
+  };
+
+  const handleLogout = () => {
+    logout();
+    setShowOption(false);
+    closeSidebar();
   };
 
   return (
@@ -78,7 +87,7 @@ function Sidebar(props) {
           <NavLink
             key={link.path}
             to={link.path}
-            exact
+            exact={link.path !== "/trials" ? true : false}
             className="flex items-center gap-3 hover:bg-gray-100 py-2 px-2"
             activeStyle={{ backgroundColor: "#eeeeee" }}
             onClick={closeSidebar}
@@ -102,10 +111,20 @@ function Sidebar(props) {
 
           {/* Right  */}
 
-          <div className="flex pr-[20px] space-x-1 ">
+          <div className="flex pr-[20px] space-x-1 relative">
             {/* Setting Logo */}
             <CogIcon className="h-5 w-5" />
-            <DotsVerticalIcon className="h-5 w-5" />
+            <DotsVerticalIcon
+              className="h-5 w-5 cursor-pointer"
+              onClick={() => setShowOption((prev) => !prev)}
+            />
+            {showOption && (
+              <div className="absolute -top-10 right-6 border w-20">
+                <button className="w-full py-1" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

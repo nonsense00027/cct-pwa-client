@@ -82,9 +82,9 @@ function Trials() {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col gap-2">
+          <div>
             <button
-              className={`cursor-pointer px-4 py-2 rounded-[0.25rem] text-white bg-[#818fa2]`}
+              className={`btn btn-block btn-success`}
               // onClick={() => {
               //   setTrials(true);
               // }}
@@ -92,7 +92,7 @@ function Trials() {
               Show
             </button>
             <button
-              className={`cursor-pointer px-4 py-2 rounded-[0.25rem] bg-[#EAEBEA]`}
+              className={`btn btn-block btn-default`}
               onClick={() => {
                 setSearch("");
                 setSort("Newest");

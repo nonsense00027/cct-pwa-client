@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
 import sample from "../../shared/data/sample.json";
 import ReactPaginate from "react-paginate";
+import { useHistory } from "react-router-dom";
 
 const items = sample.trial_data;
 // const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-function Items({ currentItems }) {
+function Items({ currentItems, openTrial }) {
   return (
     <>
       {currentItems &&
-        currentItems.map((item) => {
+        currentItems.map((item, index) => {
           const msec = Date.parse(item.date);
           const d = new Intl.DateTimeFormat("en-US", {
             dateStyle: "long",
           }).format(msec);
 
           return (
-            <tr className="text-gray-700 cursor-pointer">
+            <tr
+              className="text-gray-700 cursor-pointer"
+              onClick={() => openTrial(index)}
+            >
               <td className="px-4 py-3 text-sm border">{d}</td>
               <td className="px-4 py-3 text-sm border">{item.title}</td>
               <td className="px-4 py-3 text-sm border space-x-1">
@@ -43,8 +47,11 @@ function Items({ currentItems }) {
 }
 
 function TrialsTable({ itemsPerPage }) {
-  console.log(sample.trial_data);
+  const history = useHistory();
 
+  const openTrial = (id) => {
+    history.push(`/trials/${id}`);
+  };
   // We start with an empty list of items.
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
@@ -85,7 +92,7 @@ function TrialsTable({ itemsPerPage }) {
             </tr>
           </thead>
           <tbody className="bg-white ">
-            <Items currentItems={currentItems} />
+            <Items currentItems={currentItems} openTrial={openTrial} />
             <div className="absolute w-full right-0">
               <ReactPaginate
                 className="flex justify-end mx-4 my-4 md:my-10 items-center select-none"

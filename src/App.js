@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Trials from "./pages/Trials";
 import Messages from "./pages/Messages";
@@ -14,6 +14,7 @@ import Applications from "./pages/Applications";
 import { TrialsContextProvider } from "./contexts/TrialsContext";
 import CreateTrials from "./pages/CreateTrials";
 import Subscription from "./pages/Subscription";
+import Trial from "./pages/Trials/Trial";
 
 function App() {
   // const [user, setUser] = useState("mc");
@@ -43,6 +44,9 @@ function App() {
             <Route exact path="/applications">
               <Applications />
             </Route>
+            <Route exact path="/trials/:id">
+              <Trial />
+            </Route>
             <Route exact path="/trials">
               <Trials />
             </Route>
@@ -63,7 +67,8 @@ function App() {
               <Login />
             </Route>
             <Route path="*">
-              <Login />
+              {/* <Login /> */}
+              <Redirect to="/" />
             </Route>
           </Switch>
         )}

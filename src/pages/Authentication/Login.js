@@ -58,23 +58,20 @@ function Login() {
               </div>
             </div>
             {/* Button */}
-            <button
-              className="mb-[1rem] mt-[1rem] bg-[#3c97fe] text-white text-[0.894rem] font-[500] rounded-[0.25rem] py-[0.438rem] px-[1.125rem]"
-              type="submit"
-            >
-              <div className=" cursor-pointer text-[85%]">Sign In</div>
+            <button className="btn btn-block btn-success" type="submit">
+              Sign In
             </button>
           </form>
 
           {/* Footer Card */}
-          <div className="p-[24px] border-t-[1px] border-[#cfd3db] text-[#a3a4a6] flex justify-center space-x-2">
+          {/* <div className="p-[24px] border-t-[1px] border-[#cfd3db] text-[#a3a4a6] flex justify-center space-x-2">
             <div className="text-[0.894rem] font-[400]">
               Don't have an account yet?
             </div>
             <a href="#" className="text-[0.894rem] font-[500] text-[#1e70cd]">
               Register
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* <Footer /> */}

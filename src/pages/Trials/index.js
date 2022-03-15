@@ -5,9 +5,10 @@ import PageHeader from "../../components/PageHeader";
 import sample_specializations from "../../shared/data/sample_specializations.json";
 import TrialsTable from "./TrialsTable";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useTrialsContext } from "../../contexts/TrialsContext";
 
 function Trials() {
-  const [trials, setTrials] = useState(true);
+  const { trials } = useTrialsContext();
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("Newest");
   const [specializations, setSpecializations] = useState("All");
@@ -104,7 +105,7 @@ function Trials() {
           </div>
         </div>
         {/* Table Body */}
-        <TrialsTable itemsPerPage={6} />
+        <TrialsTable itemsPerPage={6} data={trials} />
         <div className="py-10"></div>
       </div>
     </Container>

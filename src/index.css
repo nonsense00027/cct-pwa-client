@@ -71,3 +71,13 @@ code {
 select {
   appearance: none;
 }
+
+.description-list ol {
+  list-style: decimal !important;
+  padding: 0 20px;
+}
+
+.description-list ul {
+  list-style: disc !important;
+  padding: 0 20px;
+}

@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
     axios
       .post(
         "https://cctclient.com/api/auth/login",
+        // "http://localhost:8000/api/auth/login",
         {
           email,
           password,
@@ -28,9 +29,11 @@ export const AuthContextProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        setUser({ token: response.data.token, email });
-        Cookies.set("token", response.data.token);
-        Cookies.set("email", email);
+        if (response.data.token) {
+          setUser({ token: response.data.token, email });
+          Cookies.set("token", response.data.token);
+          Cookies.set("email", email);
+        }
       })
       .catch((err) => console.log(err));
   };

@@ -45,10 +45,14 @@ function App() {
               <Applications />
             </Route>
             <Route exact path="/trials/:id">
-              <Trial />
+              <TrialsContextProvider>
+                <Trial />
+              </TrialsContextProvider>
             </Route>
             <Route exact path="/trials">
-              <Trials />
+              <TrialsContextProvider>
+                <Trials />
+              </TrialsContextProvider>
             </Route>
             <Route exact path="/">
               <Dashboard />

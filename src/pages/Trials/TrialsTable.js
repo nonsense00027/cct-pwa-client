@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from "react";
-import sample from "../../shared/data/sample.json";
 import ReactPaginate from "react-paginate";
 import { useHistory } from "react-router-dom";
-
-const items = sample.trial_data;
-// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+import moment from "moment";
 
 function Items({ currentItems, openTrial }) {
   return (
     <>
       {currentItems &&
         currentItems.map((item, index) => {
-          const msec = Date.parse(item.date);
-          const d = new Intl.DateTimeFormat("en-US", {
-            dateStyle: "long",
-          }).format(msec);
-
           return (
             <tr
               className="text-gray-700 cursor-pointer"
-              onClick={() => openTrial(index)}
+              onClick={() => openTrial(item.id)}
+              key={item.id}
             >
-              <td className="px-4 py-3 text-sm border">{d}</td>
+              <td className="px-4 py-3 text-sm border">
+                {moment(new Date(item.created_at))
+                  .subtract(10, "days")
+                  .calendar()}
+              </td>
               <td className="px-4 py-3 text-sm border">{item.title}</td>
               <td className="px-4 py-3 text-sm border space-x-1">
-                {item.specializations.map((special) => {
+                {item.specializations.map((item) => {
                   return (
                     <span className="font-medium bg-black py-[1px] px-[3px] rounded-[0.25rem] text-white">
-                      {special}
+                      {item.specialization.name}
                     </span>
                   );
                 })}
               </td>
-              <td className="px-4 py-3 text-ms font-semibold border">22</td>
+              <td className="px-4 py-3 text-ms font-semibold border">
+                {item.applications_count}
+              </td>
               <td className="px-4 py-3 text-xs border">
                 <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
                   {" "}
@@ -46,7 +45,7 @@ function Items({ currentItems, openTrial }) {
   );
 }
 
-function TrialsTable({ itemsPerPage }) {
+function TrialsTable({ itemsPerPage, data }) {
   const history = useHistory();
 
   const openTrial = (id) => {
@@ -63,15 +62,18 @@ function TrialsTable({ itemsPerPage }) {
 
   useEffect(() => {
     // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(items.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(items.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
+    if (data.length > 0) {
+      console.log("sulod");
+      const endOffset = itemOffset + itemsPerPage;
+      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      setCurrentItems(data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.length / itemsPerPage));
+    }
+  }, [itemOffset, itemsPerPage, data]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % data.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -95,7 +97,7 @@ function TrialsTable({ itemsPerPage }) {
             <Items currentItems={currentItems} openTrial={openTrial} />
             <div className="absolute w-full right-0">
               <ReactPaginate
-                className="flex justify-end mx-4 my-4 md:my-10 items-center select-none"
+                className="flex justify-end mx-4 my-4 md:my-10 items-center select-none text-xs"
                 activeLinkClassName="border-[0.5px] py-2 px-4 bg-[#3c97fe] rounded-[0.25rem] cursor-pointer text-white font-bold"
                 previousLinkClassName="border-[0.5px] py-[0.55rem] px-4 bg-white rounded-[0.25rem] cursor-pointer "
                 nextLinkClassName="border-[0.5px] py-[0.55rem] px-4 bg-white rounded-[0.25rem] cursor-pointer "
@@ -103,7 +105,7 @@ function TrialsTable({ itemsPerPage }) {
                 breakLabel="..."
                 nextLabel=">"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={3}
                 pageCount={pageCount}
                 previousLabel="<"
                 renderOnZeroPageCount={null}

@@ -6,14 +6,20 @@ import {
   ChartSquareBarIcon,
   ShieldExclamationIcon,
   ClipboardCheckIcon,
+  OfficeBuildingIcon,
+  ArchiveIcon,
+  BadgeCheckIcon,
+  ExclamationCircleIcon,
 } from "@heroicons/react/solid";
 import Card from "../../components/dashboard/Card";
 
 const stats = [
-  { title: "New Studies", count: 3, icon: ChartSquareBarIcon },
-  { title: "Historical", count: 17, icon: ClipboardCheckIcon },
-  { title: "Submissions", count: 41, icon: ChartSquareBarIcon },
+  { title: "Submissions", count: 3, icon: ClipboardCheckIcon },
+  { title: "PSV's", count: 17, icon: ArchiveIcon },
+  { title: "SIV's", count: 41, icon: OfficeBuildingIcon },
   { title: "Sites Declined", count: 9, icon: ShieldExclamationIcon },
+  { title: "Awarded", count: 4, icon: BadgeCheckIcon },
+  { title: "Not Awarded", count: 3, icon: ExclamationCircleIcon },
 ];
 function Dashboard() {
   return (

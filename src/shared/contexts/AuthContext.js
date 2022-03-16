@@ -5,11 +5,19 @@ import Cookies from "js-cookie";
 const AuthContext = createContext();
 const cookieToken = Cookies.get("token") || null;
 const cookieEmail = Cookies.get("email") || null;
+const cookieUser = () => {
+  const result = Cookies.get("user");
+  if (result) {
+    return JSON.parse(result);
+  } else {
+    return null;
+  }
+};
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(
-    cookieToken && cookieEmail
-      ? { token: cookieToken, email: cookieEmail }
+    cookieToken && cookieEmail && cookieUser
+      ? { token: cookieToken, email: cookieEmail, data: cookieUser() }
       : null
   );
 
@@ -29,10 +37,16 @@ export const AuthContextProvider = ({ children }) => {
         }
       )
       .then((response) => {
+        console.log("auth: ", response);
         if (response.data.token) {
-          setUser({ token: response.data.token, email });
+          setUser({
+            token: response.data.token,
+            email,
+            data: response.data.user,
+          });
           Cookies.set("token", response.data.token);
           Cookies.set("email", email);
+          Cookies.set("user", JSON.stringify(response.data.user));
         }
       })
       .catch((err) => console.log(err));

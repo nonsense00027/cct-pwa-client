@@ -46,7 +46,7 @@ const Dashboard = () => {
           </div>
           <div>
             <p className="ffmm fw700 fs30 cblack margb0 mt-1">3</p>
-            <p className="ffmm fs16 csemiblack mb-2">New Studies</p>
+            <p className="ffmm fs16 csemiblack mb-2">Submissions</p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ const Dashboard = () => {
           </div>
           <div>
             <p className="ffmm fw700 fs30 cblack margb0 mt-1">17</p>
-            <p className="ffmm fs16 csemiblack mb-2">Historical</p>
+            <p className="ffmm fs16 csemiblack mb-2">PSVs</p>
           </div>
         </div>
 
@@ -88,7 +88,7 @@ const Dashboard = () => {
           </div>
           <div>
             <p className="ffmm fw700 fs30 cblack margb0 mt-1">41</p>
-            <p className="ffmm fs16 csemiblack mb-2">Submissions</p>
+            <p className="ffmm fs16 csemiblack mb-2">SIVs</p>
           </div>
         </div>
 

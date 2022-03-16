@@ -16,27 +16,21 @@ function Items({ currentItems, openTrial }) {
             >
               <td className="px-4 py-3 text-sm border">
                 {moment(new Date(item.created_at))
-                  .subtract(10, "days")
+                  .subtract(0, "days")
                   .calendar()}
               </td>
               <td className="px-4 py-3 text-sm border">{item.title}</td>
               <td className="px-4 py-3 text-sm border space-x-1">
-                {item.specializations.map((item) => {
+                {item.specializations.map((item, index) => {
                   return (
-                    <span className="font-medium bg-black py-[1px] px-[3px] rounded-[0.25rem] text-white">
+                    <span
+                      key={item.id}
+                      className="font-medium bg-black py-[1px] px-[3px] rounded-[0.25rem] text-white"
+                    >
                       {item.specialization.name}
                     </span>
                   );
                 })}
-              </td>
-              <td className="px-4 py-3 text-ms font-semibold border">
-                {item.applications_count}
-              </td>
-              <td className="px-4 py-3 text-xs border">
-                <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
-                  {" "}
-                  Acceptable{" "}
-                </span>
               </td>
             </tr>
           );
@@ -86,11 +80,9 @@ function TrialsTable({ itemsPerPage, data }) {
         <table className="w-full ">
           <thead>
             <tr className="text-md  tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-              <th className="px-4 py-3">Date Added</th>
-              <th className="px-4 py-3">Title</th>
-              <th className="px-4 py-3">Specializations</th>
-              <th className="px-4 py-3">Applications</th>
-              <th className="px-4 py-3">Actions</th>
+              <th className="px-4 py-3 text-sm">Date Added</th>
+              <th className="px-4 py-3 text-sm">Title</th>
+              <th className="px-4 py-3 text-sm">Specializations</th>
             </tr>
           </thead>
           <tbody className="bg-white ">

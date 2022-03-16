@@ -4,7 +4,6 @@ import Dashboard from "./pages/Dashboard";
 import Trials from "./pages/Trials";
 import Messages from "./pages/Messages";
 import Login from "./pages/Authentication/Login";
-import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/sidebar/Sidebar";
 import { useAuthContext } from "./shared/contexts/AuthContext";
@@ -12,9 +11,10 @@ import Notifications from "./pages/Notifications";
 import Records from "./pages/Records";
 import Applications from "./pages/Applications";
 import { TrialsContextProvider } from "./contexts/TrialsContext";
-import CreateTrials from "./pages/CreateTrials";
 import Subscription from "./pages/Subscription";
 import Trial from "./pages/Trials/Trial";
+import { ApplicationContextProvider } from "./contexts/ApplicationContext";
+import { MessageContextProvider } from "./contexts/MessageContext";
 
 function App() {
   // const [user, setUser] = useState("mc");
@@ -39,10 +39,14 @@ function App() {
               <Subscription />
             </Route>
             <Route exact path="/messages">
-              <Messages />
+              <MessageContextProvider>
+                <Messages />
+              </MessageContextProvider>
             </Route>
             <Route exact path="/applications">
-              <Applications />
+              <ApplicationContextProvider>
+                <Applications />
+              </ApplicationContextProvider>
             </Route>
             <Route exact path="/trials/:id">
               <TrialsContextProvider>
@@ -57,11 +61,9 @@ function App() {
             <Route exact path="/">
               <Dashboard />
             </Route>
-            {/* <Route path="*">
-              <div>
-                <h1>404 not found</h1>
-              </div>
-            </Route> */}
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
           </Switch>
         )}
         {/* No User */}

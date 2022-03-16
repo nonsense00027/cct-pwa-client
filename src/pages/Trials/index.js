@@ -8,10 +8,11 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import { useTrialsContext } from "../../contexts/TrialsContext";
 
 function Trials() {
-  const { trials } = useTrialsContext();
+  const { trials, specializations } = useTrialsContext();
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("Newest");
-  const [specializations, setSpecializations] = useState("All");
+  const [spec, setSpec] = useState("All");
+  const [sort, setSort] = useState("created_at-desc");
+  const [view, setView] = useState("All");
 
   return (
     <Container className="">
@@ -41,11 +42,16 @@ function Trials() {
             <div className="custom-dropdown">
               <select
                 className="dropdown"
-                value={specializations}
-                onChange={(e) => setSpecializations(e.target.value)}
+                value={spec}
+                onChange={(e) => setSpec(e.target.value)}
               >
-                {sample_specializations.sample_s.map((item) => {
-                  return <option value={item.name}>{item.name}</option>;
+                <option value="All">All</option>
+                {specializations.map((item) => {
+                  return (
+                    <option value={item.name} key={item.id}>
+                      {item.specialization.name}
+                    </option>
+                  );
                 })}
               </select>
               <ChevronDownIcon className="h-4 w-4" />
@@ -97,7 +103,7 @@ function Trials() {
               onClick={() => {
                 setSearch("");
                 setSort("Newest");
-                setSpecializations("All");
+                setSpec("All");
               }}
             >
               Clear

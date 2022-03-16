@@ -21,7 +21,6 @@ export const AuthContextProvider = ({ children }) => {
       : null
   );
 
-  console.log("user: ", user);
   const login = (email, password) => {
     axios
       .post(
@@ -37,7 +36,6 @@ export const AuthContextProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log("auth: ", response);
         if (response.data.token) {
           setUser({
             token: response.data.token,

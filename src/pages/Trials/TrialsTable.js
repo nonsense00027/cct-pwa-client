@@ -57,9 +57,7 @@ function TrialsTable({ itemsPerPage, data }) {
   useEffect(() => {
     // Fetch items from another resources.
     if (data.length > 0) {
-      console.log("sulod");
       const endOffset = itemOffset + itemsPerPage;
-      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
       setCurrentItems(data.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(data.length / itemsPerPage));
     }
@@ -68,9 +66,6 @@ function TrialsTable({ itemsPerPage, data }) {
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 

@@ -24,8 +24,7 @@ export const AuthContextProvider = ({ children }) => {
   const login = (email, password) => {
     axios
       .post(
-        "https://cctclient.com/api/auth/login",
-        // "http://localhost:8000/api/auth/login",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
         {
           email,
           password,

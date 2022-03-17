@@ -23,8 +23,7 @@ export const MessageContextProvider = ({ children }) => {
     setLoading(true);
     axios
       .get(
-        "https://cctclient.com/api/messages?token=" + user.token
-        // "http://localhost:8000/api/messages?token=" + user.token
+        `${process.env.REACT_APP_BACKEND_URL}/api/messages?token=` + user.token
       )
       .then((response) => {
         setMessages(response.data);

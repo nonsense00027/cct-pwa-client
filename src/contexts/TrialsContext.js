@@ -24,8 +24,7 @@ export const TrialsContextProvider = ({ children }) => {
     setLoading(true);
     axios
       .get(
-        "https://cctclient.com/api/trials?type=open&with[]=specializations&withCount=applications&token=" +
-          // "http://localhost:8000/api/trials?type=open&with[]=specializations&withCount=applications&token=" +
+        `${process.env.REACT_APP_BACKEND_URL}/api/trials?type=open&with[]=specializations&withCount=applications&token=` +
           user.token
       )
       .then((response) => {
@@ -37,8 +36,7 @@ export const TrialsContextProvider = ({ children }) => {
   const getSpecializations = () => {
     axios
       .get(
-        "https://cctclient.com/api/clinic/specializations/" +
-          // "http://localhost:8000/api/clinic/specializations/" +
+        `${process.env.REACT_APP_BACKEND_URL}/api/clinic/specializations/` +
           user.data.user_clinic.clinic_id +
           "?token=" +
           user.token
@@ -52,8 +50,10 @@ export const TrialsContextProvider = ({ children }) => {
     return new Promise((resolve, reject) => {
       axios
         .get(
-          "https://cctclient.com/api/trial/view/" + id + "?token=" + user.token
-          // "http://localhost:8000/api/trial/view/" + id + "?token=" + user.token
+          `${process.env.REACT_APP_BACKEND_URL}/api/trial/view/` +
+            id +
+            "?token=" +
+            user.token
         )
         .then((response) => {
           resolve(response);
@@ -68,8 +68,7 @@ export const TrialsContextProvider = ({ children }) => {
     return new Promise((resolve, reject) => {
       axios
         .get(
-          "https://cctclient.com/api/investigators/" +
-            // "http://localhost:8000/api/investigators/" +
+          `${process.env.REACT_APP_BACKEND_URL}/api/investigators/` +
             id +
             "?token=" +
             user.token

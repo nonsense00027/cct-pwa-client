@@ -23,8 +23,8 @@ export const ApplicationContextProvider = ({ children }) => {
     setLoading(true);
     axios
       .get(
-        "https://cctclient.com/api/applications?filter=my&token=" + user.token
-        // "http://localhost:8000/api/applications?filter=my&token=" + user.token
+        `${process.env.REACT_APP_BACKEND_URL}/api/applications?filter=my&token=` +
+          user.token
       )
       .then((response) => {
         setApplications(response.data);

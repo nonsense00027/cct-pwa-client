@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Trials from "./pages/Trials";
@@ -21,6 +21,15 @@ function App() {
   // const [user, setUser] = useState("hello");
   const { user } = useAuthContext();
   const [showSidebar, setShowSidebar] = useState(true);
+
+  useEffect(() => {
+    if (
+      window.navigator.userAgentData.platform.toLowerCase() === "macos" ||
+      window.navigator.userAgentData.platform.toLowerCase() === "windows"
+    ) {
+      window.location.href = "https://cctclient.com/login";
+    }
+  }, []);
 
   return (
     <div>

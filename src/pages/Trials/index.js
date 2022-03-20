@@ -8,11 +8,40 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import { useTrialsContext } from "../../contexts/TrialsContext";
 
 function Trials() {
-  const { trials, specializations } = useTrialsContext();
+  const { specializations, filterTrials } = useTrialsContext();
+  const [trials, setTrials] = useState([]);
   const [search, setSearch] = useState("");
   const [spec, setSpec] = useState("All");
   const [sort, setSort] = useState("created_at-desc");
   const [view, setView] = useState("All");
+
+  const handleFilter = () => {
+    filterTrials(search, spec, sort, view).then((data) => {
+      setTrials(data);
+    });
+  };
+
+  const clearFilter = () => {
+    setSearch("");
+    setSort("created_at-desc");
+    setSpec("All");
+    setView("All");
+    filterTrials("", "All", "created_at-desc", "All").then((data) => {
+      setTrials(data);
+    });
+  };
+
+  useEffect(() => {
+    filterTrials(search, spec, sort, view).then((data) => {
+      setTrials(data);
+    });
+  }, []);
+
+  const getTrials = () => {
+    return trials;
+  };
+
+  console.log("trials: ", getTrials());
 
   return (
     <Container className="">
@@ -48,7 +77,10 @@ function Trials() {
                 <option value="All">All</option>
                 {specializations.map((item) => {
                   return (
-                    <option value={item.name} key={item.id}>
+                    <option
+                      value={item.specialization.id}
+                      key={item.specialization.id}
+                    >
                       {item.specialization.name}
                     </option>
                   );
@@ -67,10 +99,10 @@ function Trials() {
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
               >
-                <option value="Newest">Newest</option>
-                <option value="Oldest">Oldest</option>
-                <option value="Title A-Z">Title A-Z</option>
-                <option value="Title Z-A">Title Z-A</option>
+                <option value="created_at-desc">Newest</option>
+                <option value="created_at-asc">Oldest</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
               </select>
               <ChevronDownIcon className="h-4 w-4" />
             </div>
@@ -81,8 +113,16 @@ function Trials() {
               Applied Status:
             </label>
             <div className="custom-dropdown">
-              <select name="" id="" className="dropdown">
-                <option value="">All</option>
+              <select
+                name=""
+                id=""
+                className="dropdown"
+                value={view}
+                onChange={(e) => setView(e.target.value)}
+              >
+                <option value="All">All</option>
+                <option value="able-to-apply">Trials Not Applied For</option>
+                <option value="unable-to-apply">Trials Applied For</option>
               </select>
               <ChevronDownIcon className="h-4 w-4" />
             </div>
@@ -92,26 +132,24 @@ function Trials() {
           <div>
             <button
               className={`btn btn-block btn-success`}
-              // onClick={() => {
-              //   setTrials(true);
-              // }}
+              onClick={handleFilter}
             >
               Show
             </button>
             <button
               className={`btn btn-block btn-default`}
-              onClick={() => {
-                setSearch("");
-                setSort("Newest");
-                setSpec("All");
-              }}
+              onClick={clearFilter}
             >
               Clear
             </button>
           </div>
         </div>
         {/* Table Body */}
-        <TrialsTable itemsPerPage={6} data={trials} />
+        {getTrials().length > 0 ? (
+          <TrialsTable itemsPerPage={6} data={getTrials()} />
+        ) : (
+          <div className="grid place-items-center pt-20">No data available</div>
+        )}
         <div className="py-10"></div>
       </div>
     </Container>

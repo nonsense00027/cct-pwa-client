@@ -43,14 +43,6 @@ function App() {
       if (!isMobileDevice()) {
         window.location.href = "https://cctclient.com/login";
       }
-      // console.log(window.navigator);
-      // console.log(isMobileDevice());
-      // if (
-      //   window.navigator.userAgentData.platform.toLowerCase() === "macos" ||
-      //   window.navigator.userAgentData.platform.toLowerCase() === "windows"
-      // ) {
-      //   window.location.href = "https://cctclient.com/login";
-      // }
     }
   }, [window]);
 

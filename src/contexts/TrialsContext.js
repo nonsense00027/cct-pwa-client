@@ -33,6 +33,33 @@ export const TrialsContextProvider = ({ children }) => {
       });
   };
 
+  const filterTrials = (q, spec, sort, view) => {
+    console.log("q: ", q);
+    console.log("spec: ", spec);
+    console.log("sort: ", sort);
+    console.log("view: ", view);
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/trials?q=` +
+            q +
+            "&spec=" +
+            spec +
+            "&sort=" +
+            sort +
+            "&type=open&with[]=specializations&withCount=applications&view=" +
+            view +
+            "&token=" +
+            user.token
+        )
+        .then((response) => {
+          console.log("filtered: ", response);
+          resolve(response.data);
+        })
+        .catch((err) => reject(err));
+    });
+  };
+
   const getSpecializations = () => {
     axios
       .get(
@@ -83,7 +110,14 @@ export const TrialsContextProvider = ({ children }) => {
   };
 
   const payload = useMemo(
-    () => ({ trials, specializations, loading, getTrial, getInvestigators }),
+    () => ({
+      trials,
+      specializations,
+      loading,
+      getTrial,
+      filterTrials,
+      getInvestigators,
+    }),
     [trials, specializations]
   );
   return (

@@ -2,7 +2,7 @@ import React from "react";
 
 function NotificationItem({ date, message, seen }) {
   return (
-    <div className="py-4 border-b">
+    <div className="font-secondary py-4 border-b">
       <p className={`text-sm ${seen && "opacity-70"}`}>{message}</p>
       <p
         className={`text-xs opacity-60 ${

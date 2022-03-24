@@ -7,7 +7,7 @@ function MessageItem({ name, message, date }) {
       <div className="px-2 grid place-items-center bg-blue-500 w-2/12">
         <UserCircleIcon className="h-8 w-8 text-white" />
       </div>
-      <div className="flex-1 py-3 px-2">
+      <div className="font-secondary flex-1 py-3 px-2">
         <div className="flex justify-between">
           <h2 className="text-sm font-semibold">{name}</h2>
           <p className="text-xs opacity-70">{date}</p>

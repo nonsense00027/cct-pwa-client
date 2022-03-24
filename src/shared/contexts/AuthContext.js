@@ -35,18 +35,22 @@ export const AuthContextProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        if (response.data.token) {
-          setUser({
-            token: response.data.token,
-            email,
-            data: response.data.user,
-          });
-          Cookies.set("token", response.data.token);
-          Cookies.set("email", email);
-          Cookies.set("user", JSON.stringify(response.data.user));
+        if (response.data.user.roles[0].name !== "standard_user") {
+          alert("User not found.");
+        } else {
+          if (response.data.token) {
+            setUser({
+              token: response.data.token,
+              email,
+              data: response.data.user,
+            });
+            Cookies.set("token", response.data.token);
+            Cookies.set("email", email);
+            Cookies.set("user", JSON.stringify(response.data.user));
+          }
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   const logout = () => {

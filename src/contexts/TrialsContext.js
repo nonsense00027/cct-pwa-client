@@ -20,6 +20,7 @@ export const TrialsContextProvider = ({ children }) => {
     getTrials();
     getSpecializations();
   }, []);
+
   const getTrials = () => {
     setLoading(true);
     axios
@@ -34,10 +35,6 @@ export const TrialsContextProvider = ({ children }) => {
   };
 
   const filterTrials = (q, spec, sort, view) => {
-    console.log("q: ", q);
-    console.log("spec: ", spec);
-    console.log("sort: ", sort);
-    console.log("view: ", view);
     return new Promise((resolve, reject) => {
       axios
         .get(
@@ -53,7 +50,6 @@ export const TrialsContextProvider = ({ children }) => {
             user.token
         )
         .then((response) => {
-          console.log("filtered: ", response);
           resolve(response.data);
         })
         .catch((err) => reject(err));
@@ -109,6 +105,54 @@ export const TrialsContextProvider = ({ children }) => {
     });
   };
 
+  const getReminders = (id) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/trial-reminders/trial/` +
+            id +
+            "?token=" +
+            user.token
+        )
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => reject(err));
+    });
+  };
+
+  const getReferrals = (id) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/referrals?trial=` +
+            id +
+            "?token=" +
+            user.token
+        )
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => reject(err));
+    });
+  };
+
+  const getApplications = (id) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/applications/trial/` +
+            id +
+            "?filter=mine&token=" +
+            user.token
+        )
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => reject(err));
+    });
+  };
+
   const payload = useMemo(
     () => ({
       trials,
@@ -117,6 +161,9 @@ export const TrialsContextProvider = ({ children }) => {
       getTrial,
       filterTrials,
       getInvestigators,
+      getReminders,
+      getReferrals,
+      getApplications,
     }),
     [trials, specializations]
   );

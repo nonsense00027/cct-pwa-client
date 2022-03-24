@@ -1,21 +1,9 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/logo.png";
-import SidebarItems from "./SidebarItems";
-import dashboard from "../../assets/images/dashboard.png";
-import hospital from "../../assets/images/hospital.png";
-import stethoscope from "../../assets/images/stethoscope.png";
-import user from "../../assets/images/user.png";
-import avatar from "../../assets/images/avatar.png";
-import file from "../../assets/images/file.png";
-import account from "../../assets/images/account.png";
-import dropdownarrow from "../../assets/images/drop-down-arrow.png";
-import cog from "../../assets/images/cog.png";
-import verticalEllipsis from "../../assets/images/vertical-ellipsis.png";
 import { NavLink } from "react-router-dom";
 import {
   TemplateIcon,
   BriefcaseIcon,
-  OfficeBuildingIcon,
   XIcon,
   CogIcon,
   DotsVerticalIcon,
@@ -45,7 +33,7 @@ const links = [
 
 function Sidebar(props) {
   const { showSidebar, closeSidebar } = useAppContext();
-  const { logout } = useAuthContext();
+  const { user, logout } = useAuthContext();
   const [showOption, setShowOption] = useState(false);
 
   const checkActive = ({ isActive }) => {
@@ -62,7 +50,7 @@ function Sidebar(props) {
 
   return (
     <div
-      className={`w-10/12 md:w-[336px] h-screen fixed bg-white flex flex-col px-2 z-50 transform transition-all duration-200 ease-out ${
+      className={`font-primary w-10/12 md:w-[336px] h-screen fixed bg-white flex flex-col z-50 transform transition-all duration-200 ease-out ${
         showSidebar ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -82,14 +70,14 @@ function Sidebar(props) {
       </div>
 
       {/* Body */}
-      <div className="px-4 flex-1 pt-10">
+      <div className="flex-1 pt-10">
         {links.map((link) => (
           <NavLink
             key={link.path}
             to={link.path}
             exact={link.path !== "/trials" ? true : false}
-            className="flex items-center gap-3 hover:bg-gray-100 py-2 px-2"
-            activeStyle={{ backgroundColor: "#eeeeee" }}
+            className="flex text-sm items-center gap-3 hover:bg-gray-100 py-3 px-4 border-l-4 border-transparent"
+            activeClassName="bg-secondary bg-opacity-20 border-l-4 !border-secondary"
             onClick={closeSidebar}
           >
             {<link.icon className="h-4 w-4" />}
@@ -104,9 +92,11 @@ function Sidebar(props) {
           {/* Left */}
           <div className="flex items-center space-x-2 cursor-pointer transform hover:scale-105">
             {/* Logo */}
-            <UserCircleIcon className="h-6 w-6" />
+            <UserCircleIcon className="h-7 w-7 text-secondary" />
             {/* Text */}
-            <div>System Admin</div>
+            <div className="font-semibold text-sm">
+              {user?.data.profile.first_name} {user?.data.profile.last_name}
+            </div>
           </div>
 
           {/* Right  */}

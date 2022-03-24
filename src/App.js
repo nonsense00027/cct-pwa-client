@@ -38,13 +38,13 @@ function App() {
   const { user } = useAuthContext();
   const [showSidebar, setShowSidebar] = useState(true);
 
-  useEffect(() => {
-    if (window) {
-      if (!isMobileDevice()) {
-        window.location.href = "https://cctclient.com/login";
-      }
-    }
-  }, [window]);
+  // useEffect(() => {
+  //   if (window) {
+  //     if (!isMobileDevice()) {
+  //       window.location.href = "https://cctclient.com/login";
+  //     }
+  //   }
+  // }, [window]);
 
   return (
     <div>

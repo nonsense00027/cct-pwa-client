@@ -10,7 +10,7 @@ function Items({ currentItems, openTrial }) {
         currentItems.map((item, index) => {
           return (
             <tr
-              className="text-gray-700 cursor-pointer"
+              className="font-secondary text-gray-700 cursor-pointer"
               onClick={() => openTrial(item.id)}
               key={item.id}
             >

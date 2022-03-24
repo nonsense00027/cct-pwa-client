@@ -41,8 +41,6 @@ function Trials() {
     return trials;
   };
 
-  console.log("trials: ", getTrials());
-
   return (
     <Container className="">
       <PageHeader title="Trials" />

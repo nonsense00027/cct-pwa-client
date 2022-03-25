@@ -12,16 +12,35 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/solid";
 import Card from "../../components/dashboard/Card";
+import { useDashboardContext } from "../../contexts/DashboardContext";
 
-const stats = [
-  { title: "Submissions", count: 3, icon: ClipboardCheckIcon },
-  { title: "PSV's", count: 17, icon: ArchiveIcon },
-  { title: "SIV's", count: 41, icon: OfficeBuildingIcon },
-  { title: "Sites Declined", count: 9, icon: ShieldExclamationIcon },
-  { title: "Awarded", count: 4, icon: BadgeCheckIcon },
-  { title: "Not Awarded", count: 3, icon: ExclamationCircleIcon },
+const statsItems = [
+  {
+    title: "Submissions",
+    count: 3,
+    icon: ClipboardCheckIcon,
+    name: "submissions",
+  },
+  { title: "PSV's", count: 17, icon: ArchiveIcon, name: "psvs" },
+  { title: "SIV's", count: 41, icon: OfficeBuildingIcon, name: "sivs" },
+  {
+    title: "Sites Declined",
+    count: 9,
+    icon: ShieldExclamationIcon,
+    name: "site_declined",
+  },
+  { title: "Awarded", count: 4, icon: BadgeCheckIcon, name: "awarded" },
+  {
+    title: "Not Awarded",
+    count: 3,
+    icon: ExclamationCircleIcon,
+    name: "not_awarded",
+  },
 ];
+
 function Dashboard() {
+  const { stats } = useDashboardContext();
+
   return (
     <Container>
       <PageHeader title="Home" />
@@ -37,7 +56,7 @@ function Dashboard() {
       </section>
 
       {/* OPTIONS */}
-      <section className="my-6">
+      {/* <section className="my-6">
         <div className="option">
           <label className="font-semibold" htmlFor="">
             Date:
@@ -60,13 +79,20 @@ function Dashboard() {
             <ChevronDownIcon className="h-4 w-4" />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* MAIN */}
-      <main className="w-full">
-        {stats.map((stat, index) => (
-          <Card key={index} stat={stat} />
-        ))}
+      <main className="w-full mt-10">
+        {stats &&
+          statsItems.map((stat, index) => (
+            <Card
+              key={index}
+              stat={stat}
+              title={stat.title}
+              count={stats[stat.name].length}
+              icon={stat.icon}
+            />
+          ))}
       </main>
     </Container>
   );

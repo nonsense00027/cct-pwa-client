@@ -15,6 +15,7 @@ import Subscription from "./pages/Subscription";
 import Trial from "./pages/Trials/Trial";
 import { ApplicationContextProvider } from "./contexts/ApplicationContext";
 import { MessageContextProvider } from "./contexts/MessageContext";
+import { DashboardContextProvider } from "./contexts/DashboardContext";
 
 function isMobileDevice() {
   var check = false;
@@ -83,7 +84,9 @@ function App() {
               </TrialsContextProvider>
             </Route>
             <Route exact path="/">
-              <Dashboard />
+              <DashboardContextProvider>
+                <Dashboard />
+              </DashboardContextProvider>
             </Route>
             <Route path="*">
               <Redirect to="/" />
